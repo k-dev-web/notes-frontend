@@ -1,0 +1,16 @@
+
+
+<ion-content class="modal-content">
+  <form>
+<ion-list *ngIf="model">
+  <ion-item transparent *ngFor="let input of model.inputs">
+    <ion-label stacked>{{input.name}}</ion-label>
+    <ion-input required type="{{input.type}}" placeholder="{{input.placeHolder}}"
+               formControlName="{{input.name}}"></ion-input>
+
+  </ion-item>
+</ion-list>
+  </form>
+  <ion-button  class="ion-color-success ion-margin-bottom note-button">Add Note </ion-button>
+
+</ion-content>
