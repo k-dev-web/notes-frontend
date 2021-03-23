@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {NotesProvider} from '../../providers/providers/notes';
 import {CategoriesProvider} from '../../providers/providers/categories';
 import {ModalController} from '@ionic/angular';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 
 
 @Component({
@@ -12,16 +12,17 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./modal.scss'],
 })
 export class ModalPage {
-  public modalForm: FormGroup;
-
-
+  public minDate = '';
   @Input() model: {
+    form: any,
     title: string,
     isEdit: boolean,
     buttons: [{
-      action: () => {},
+      action: (ctrl: any, form: any) => {},
       name: string,
       class: string,
+      color: string,
+      supportElements: any
     }]
     inputs: [{
       name: string,
@@ -29,6 +30,7 @@ export class ModalPage {
       placeHolder: string,
       value: any,
       type: string,
+      list?: [],
       validators: []
     }]
   };
@@ -40,25 +42,21 @@ export class ModalPage {
     private modalCtrl: ModalController,
     private fb: FormBuilder,
   ) {
+    let dateTmp = new Date();
+
+    this.minDate = dateTmp.getFullYear() + '-' + dateTmp.getDate() + '-' + dateTmp.getMonth();
+    console.log(this.minDate);
   }
 
-  dismiss() {
-    this.modalCtrl.dismiss({});
-  }
 
   ngOnInit() {
-this.initForm();
+    console.log('in init');
+    console.log(this.model);
   }
 
-  initForm() {
-    let formModel = {};
-    console.log(this.model);
-    this.model.inputs.forEach(input => {
-      formModel[input.name] = [input.value, Validators.compose(input.validators)];
-    });
-
-    this.modalForm = this.fb.group(formModel);
-
+  compareFn(item1, item2) {
+    console.log(item1, item2);
+    return item1 === item2 ? false : true;
   }
 
 }

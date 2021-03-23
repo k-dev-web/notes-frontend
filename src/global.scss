@@ -26,10 +26,10 @@
 @import "~@ionic/angular/css/flex-utils.css";
 .my-modal-content {
   .modal-wrapper {
-    height: 50%;
-    width:300px;
-
+    width:250px;
+    min-height: 400px;
+height: auto;
     position: absolute;
-    display: block;
+border-radius: 5%;
   }
 }

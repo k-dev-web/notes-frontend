@@ -16,13 +16,19 @@
         <ion-list id="labels-list">
           <ion-list-header>Categories</ion-list-header>
 
-          <ion-item *ngFor="let category of (categories.categories|async).list" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ category["name"] }}</ion-label>
+          <ion-item *ngFor="let category of (categories.categories|async).list;let i = index"
+                    lines="none"
+          >
+            <ion-icon *ngIf="!category.inFilter" (click)="addFilter(category,i)" slot="start"
+                      md="bookmark-outline"></ion-icon>
+
+            <ion-icon *ngIf="category.inFilter" (click)="addFilter(category,i)" slot="start"
+                      md="bookmark-sharp"></ion-icon>
+            <ion-label (click)="presentInfoModal(category)">{{ category["name"] }}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>
-      <ion-button class="ion-color-success ion-margin-bottom" (click)="presentModal(true)">Add Category
+      <ion-button class="ion-color-success ion-margin-bottom" (click)="presentAddModal()">Add Category
       </ion-button>
 
     </ion-menu>

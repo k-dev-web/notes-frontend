@@ -1,16 +1,85 @@
+<ion-content class="modal-content" *ngIf="model">
+  <ion-header>
+    <h4 style=" text-align: center">
+      {{model.title}}
+    </h4>
+  </ion-header>
+  <form [formGroup]="model.form">
+    <ion-list>
+      <ion-item transparent *ngFor="let input of model.inputs">
+        <ng-container *ngIf="input.type==='text'">
+          <ion-label stacked>{{input.name}} :</ion-label>
 
+          <ion-input
+            disabled="{{model.isEdit}}"
+            required
+            placeholder="{{input.placeHolder}}"
+            formControlName="{{input.name}}"
+          >
+          </ion-input>
+        </ng-container>
+        <ng-container *ngIf="input.type==='textarea'">
 
-<ion-content class="modal-content">
-  <form>
-<ion-list *ngIf="model">
-  <ion-item transparent *ngFor="let input of model.inputs">
-    <ion-label stacked>{{input.name}}</ion-label>
-    <ion-input required type="{{input.type}}" placeholder="{{input.placeHolder}}"
-               formControlName="{{input.name}}"></ion-input>
+          <ion-label stacked>{{input.name}}</ion-label>
+          <ion-textarea
+            disabled="{{model.isEdit}}"
+            required
+            placeholder="{{input.placeHolder}}"
+            formControlName="{{input.name}}"
+          ></ion-textarea>
 
-  </ion-item>
-</ion-list>
+        </ng-container>
+        <ng-container *ngIf="input.type==='datepicker'">
+
+          <ion-label stacked>{{input.name}}</ion-label>
+          <ion-datetime
+            disabled="{{model.isEdit}}"
+            required
+            placeholder="{{input.placeHolder}}"
+            formControlName="{{input.name}}"
+            displayFormat="D MMM YYYY H:mm"
+            display-timezone="utc"
+            max="2099-01-01"
+            min="2021-03-23"
+          ></ion-datetime>
+
+        </ng-container>
+        <ng-container *ngIf="input.type==='select'">
+
+          <ion-label stacked>{{input.name}}</ion-label>
+          <ion-select
+            disabled="{{model.isEdit}}"
+            required
+            placeholder="{{input.placeHolder}}"
+            formControlName="{{input.name}}"
+          >
+            <ion-select-option
+              *ngFor="let category of input.list"
+              value="{{category['id']}}">
+              {{category["name"]}}
+            </ion-select-option>
+
+          </ion-select>
+
+        </ng-container>
+
+      </ion-item>
+    </ion-list>
   </form>
-  <ion-button  class="ion-color-success ion-margin-bottom note-button">Add Note </ion-button>
+  <ion-footer style="text-align: center; ">
+    <ion-button *ngIf="model.isEdit"
+                size="large"
+                color="primary"
+                (click)="model.isEdit=!model.isEdit"
+                style="width: 90%">
+      EDIT
+    </ion-button>
+    <ng-container *ngIf="!model.isEdit">
+      <ng-container *ngFor="let button of model.buttons">
+        <ion-button color="{{button.color}}" class="{{button.class}}"
+                    (click)="button.action(button.supportElements,model.form)">{{button.name}}</ion-button>
+      </ng-container>
+    </ng-container>
+  </ion-footer>
 
 </ion-content>

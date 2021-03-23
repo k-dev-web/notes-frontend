@@ -52,7 +52,8 @@ export class Interceptor implements HttpInterceptor {
 
 
   public handleError(error) {
-    this.toast.setToast({message: JSON.stringify(error), class: 'error'});
+    console.log(error);
+    this.toast.setToast({message: error.message, class: 'error'});
     return Observable.throw(error);
   }
 

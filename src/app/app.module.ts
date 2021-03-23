@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
-import {IonicModule, IonicRouteStrategy,  ModalController} from '@ionic/angular';
+import {IonicModule, IonicRouteStrategy, ModalController} from '@ionic/angular';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -12,12 +12,12 @@ import {httpInterceptorProviders} from '../providers/providers/http-interceptors
 import {HttpClientModule} from '@angular/common/http';
 import {ToastService} from '../services/toast';
 import {ModalPage} from '../components/modals/modal';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, ModalPage],
   entryComponents: [],
-  imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule],
   providers: [
     FormBuilder,
     ModalController,

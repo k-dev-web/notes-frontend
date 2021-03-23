@@ -8,15 +8,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list  id="labels-list">
-    <ion-item *ngFor="let note of (notes.notes|async).list" lines="none">
+  <ion-list id="labels-list">
+    <ion-item *ngFor="let note of sortedNote((notes.filterNotes|async).list)" lines="none"
+              (click)="presentInfoModal(note)">
 
       <div slot="start" class="dot dot-unread"></div>
       <ion-label class="ion-text-wrap">
         <h2>
           {{note["Category"]["name"]}}
           <span class="date">
-            <ion-note >{{(note["time_stamp"]|date:'YY-MM-dd HH:mm')}}</ion-note>
+           <!-- <ion-note>{{convertDate(note["time_stamp"])|date:'YY-MM-dd HH:mm'}}</ion-note>-->
+            <ion-note>{{convertDate(note["time_stamp"])}}</ion-note>
           </span>
         </h2>
         <h3>{{note["name"]}}</h3>
@@ -26,6 +28,6 @@
       </ion-label>
     </ion-item>
   </ion-list>
-  <ion-button  class="ion-color-success ion-margin-bottom note-button">Add Note </ion-button>
+  <ion-button (click)="presentAddModal()" class="ion-color-success ion-margin-bottom note-button">Add Note</ion-button>
 
 </ion-content>
