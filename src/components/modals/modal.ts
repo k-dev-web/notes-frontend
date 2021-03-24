@@ -43,9 +43,7 @@ export class ModalPage {
     private fb: FormBuilder,
   ) {
     let dateTmp = new Date();
-
     this.minDate = dateTmp.getFullYear() + '-' + dateTmp.getDate() + '-' + dateTmp.getMonth();
-    console.log(this.minDate);
   }
 
 

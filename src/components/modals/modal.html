@@ -9,7 +9,6 @@
       <ion-item transparent *ngFor="let input of model.inputs">
         <ng-container *ngIf="input.type==='text'">
           <ion-label stacked>{{input.name}} :</ion-label>
-
           <ion-input
             disabled="{{model.isEdit}}"
             required
@@ -19,7 +18,6 @@
           </ion-input>
         </ng-container>
         <ng-container *ngIf="input.type==='textarea'">
-
           <ion-label stacked>{{input.name}}</ion-label>
           <ion-textarea
             disabled="{{model.isEdit}}"
@@ -27,10 +25,8 @@
             placeholder="{{input.placeHolder}}"
             formControlName="{{input.name}}"
           ></ion-textarea>
-
         </ng-container>
         <ng-container *ngIf="input.type==='datepicker'">
-
           <ion-label stacked>{{input.name}}</ion-label>
           <ion-datetime
             disabled="{{model.isEdit}}"
@@ -42,10 +38,8 @@
             max="2099-01-01"
             min="2021-03-23"
           ></ion-datetime>
-
         </ng-container>
         <ng-container *ngIf="input.type==='select'">
-
           <ion-label stacked>{{input.name}}</ion-label>
           <ion-select
             disabled="{{model.isEdit}}"
@@ -58,11 +52,8 @@
               value="{{category['id']}}">
               {{category["name"]}}
             </ion-select-option>
-
           </ion-select>
-
         </ng-container>
-
       </ion-item>
     </ion-list>
   </form>
@@ -81,5 +72,4 @@
       </ng-container>
     </ng-container>
   </ion-footer>
-
 </ion-content>

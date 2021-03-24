@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CategoriesProvider} from '../providers/providers/categories';
-import {AlertController, ModalController} from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import {ModalPage} from '../components/modals/modal';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastService} from '../services/toast';
@@ -12,7 +12,6 @@ import {NotesProvider} from '../providers/providers/notes';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
   public appPages = [
     {title: 'Notes', url: '/folder/notes', icon: 'mail'},
   ];
@@ -26,15 +25,12 @@ export class AppComponent {
     private fb: FormBuilder,
     private notes: NotesProvider
   ) {
-
-
   }
 
   ngOnInit() {
     this.categories.getCategories();
     this.categories.filterCategories$.subscribe((fCategories) => {
       this.notes.filteredNotes(fCategories.list);
-
     });
   }
 
@@ -80,7 +76,6 @@ export class AppComponent {
 
 
   async presentAddModal() {
-    console.log(this.categories.categories.getValue());
     await this.initForm();
     const modal = await this.modalCtrl.create({
       component: ModalPage,
@@ -132,8 +127,6 @@ export class AppComponent {
       }
     });
     await modal.present();
-
-
   }
 
   async presentInfoModal(category) {
@@ -157,7 +150,6 @@ export class AppComponent {
               moduleCtrl: this.modalCtrl,
               categories: this.categories,
               toast: this.toast
-
             },
           },
             {
@@ -169,8 +161,6 @@ export class AppComponent {
                 moduleCtrl: this.modalCtrl,
                 categories: this.categories,
                 toast: this.toast
-
-
               },
             }],
           inputs: [{
@@ -193,9 +183,5 @@ export class AppComponent {
       }
     });
     await modal.present();
-
-
   }
-
-
 }

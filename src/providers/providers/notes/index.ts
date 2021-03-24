@@ -67,12 +67,10 @@ export class NotesProvider {
   async updateNotes(value) {
     this.http.put('/api/upNotes', value)
       .subscribe(res => {
-
         if (res['message'] === 'Ok') {
           this.toast.setToast({class: 'success', message: 'notes updated'});
           this.getNotes();
         }
-
       });
   }
 

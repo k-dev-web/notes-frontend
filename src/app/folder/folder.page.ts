@@ -30,7 +30,6 @@ export class FolderPage implements OnInit {
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
     this.notes.getNotes();
-
   }
 
   async initForm(values?) {
@@ -75,7 +74,6 @@ export class FolderPage implements OnInit {
   }
 
   sortedNote(list) {
-    console.log('in sort');
     return list.sort((item1, item2) => {
       if (moment(item1.time_stamp).isBefore(item2.time_stamp)) {
         return -1;
@@ -155,8 +153,6 @@ export class FolderPage implements OnInit {
       }
     });
     await modal.present();
-
-
   }
 
   async presentInfoModal(note) {
@@ -192,8 +188,6 @@ export class FolderPage implements OnInit {
                 moduleCtrl: this.modalCtrl,
                 categories: this.categories,
                 toast: this.toast
-
-
               },
             }],
           inputs: [{
@@ -229,14 +223,8 @@ export class FolderPage implements OnInit {
               validators: [Validators.required]
             }]
         }
-
       }
     });
-
     await modal.present();
-
-
   }
-
-
 }

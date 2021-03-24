@@ -47,13 +47,12 @@ export class Interceptor implements HttpInterceptor {
           }
         })
       );
-
   }
 
 
   public handleError(error) {
     console.log(error);
-    this.toast.setToast({message: error.message, class: 'error'});
+    this.toast.setToast({message: error.error.message, class: 'error'});
     return Observable.throw(error);
   }
 
